@@ -194,7 +194,6 @@ void third(unsigned int n)
          myfile << e[i] << " " << u[i] << endl;
     }
     myfile.close();
-    cout << val << endl;
 }
 
 void fourth(unsigned int n){
@@ -253,11 +252,11 @@ void fourth(unsigned int n){
 
 int main()
 {
-    unsigned int n = 10000000;
+    unsigned int n = 10000;
 
     //first(n);     //Opg 1.b
     //second(n);    //Opg 1.c
-    third(n);     //Opg 1.d
+    //third(n);     //Opg 1.d
     //fourth(n);     //Opg 1.e
 
     return 0;
