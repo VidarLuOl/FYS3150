@@ -156,10 +156,7 @@ void third(unsigned int n)
     e = new double [n];
     q = new double [n];
 
-    double p = 1/n;
-    for(i = 0; i < n; i++){
-        x[i] = p*i;
-    }
+    double val = 0.0;
 
     for(i = 0; i < n; i++){
         x[i] = i*h;
@@ -181,6 +178,9 @@ void third(unsigned int n)
     for(i = 0; i < n; i++){
         q[i] = 1 - m*i - exp(-10*(int)i);
         e[i] = log10(abs((u[i]-q[i])/q[i]));
+        if(e[i] > val){
+            val = e[i];
+        }
     }
 
     auto finish = std::chrono::high_resolution_clock::now();
@@ -189,11 +189,12 @@ void third(unsigned int n)
 
     ofstream myfile;
     myfile.open ("verdier.txt");
-    myfile << n << " " << elapsed.count() << endl;
+    myfile << n << " " << elapsed.count() << " " << val << endl;
     for(i = 1; i < n; i++){
          myfile << e[i] << " " << u[i] << endl;
     }
     myfile.close();
+    cout << val << endl;
 }
 
 void fourth(unsigned int n){
@@ -247,18 +248,17 @@ void fourth(unsigned int n){
         }
         myfile << Ans << endl;
         myfile.close();
-
     }
 }
 
 int main()
 {
-    unsigned int n = 10000;
+    unsigned int n = 10000000;
 
     //first(n);     //Opg 1.b
     //second(n);    //Opg 1.c
-    //third(n);     //Opg 1.d
-    fourth(n);     //Opg 1.e
+    third(n);     //Opg 1.d
+    //fourth(n);     //Opg 1.e
 
     return 0;
 }
